@@ -9,7 +9,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100816080447) do
+ActiveRecord::Schema.define(:version => 20100826032345) do
+
+  create_table "contributes", :force => true do |t|
+    t.string   "name"
+    t.text     "body"
+    t.binary   "photo"
+    t.datetime "upload_date"
+    t.boolean  "public_flg"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "file_name"
+    t.integer  "file_size"
+    t.string   "parent_key"
+  end
 
   create_table "epubs", :force => true do |t|
     t.string   "title"
@@ -21,14 +34,6 @@ ActiveRecord::Schema.define(:version => 20100816080447) do
   create_table "memos", :force => true do |t|
     t.string   "title"
     t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "todos", :force => true do |t|
-    t.string   "body"
-    t.date     "due"
-    t.boolean  "done"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
