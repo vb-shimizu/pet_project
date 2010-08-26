@@ -1,0 +1,192 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja-JP" lang="ja-JP">
+<head>
+  <title>一行掲示板</title>
+  <style>
+/* COMMENTS
+========================================== */
+#comments #comment_form {
+	margin-left: 0px;
+	margin-bottom: 20px;
+	padding: 12px 12px 9px;
+	background-color: #fff;
+	border: 1px solid #EAEAEA;
+	border-left-width: 3px;
+}
+#comments .comment-wrap {
+	height: 100%;
+	overflow: auto;
+	margin: 0 0 12px 0;
+	padding: 0 12px 0;
+	clear: both;
+	background-color: #fff;
+	border: 1px solid #EAEAEA;
+}
+
+#comments h3 {
+	padding-top: 0;
+}
+
+#comments .comment-wrap img.avatar {
+	margin: 0;
+	margin-bottom: 12px;
+	padding: 2px;
+	background-color: #fff;
+	border: 1px solid #E8E8E8;
+}
+
+#comments .comment-wrap .left {
+	width: 65px;
+	padding-top: 12px;
+	float: left;
+}
+
+#comments .comment-wrap .right {
+	width: 322px;
+	float: left;
+	padding: 12px 0 6px 12px;
+}
+
+#comments .comment-wrap .right a {
+	text-decoration: none;
+}
+
+#comments .comment-wrap .right a:hover {
+	text-decoration: underline;
+}
+
+#comments .comment-wrap .right cite {
+	margin: 0;
+	padding: 0;
+	font-style: normal;
+	display: block;
+	height: 100%;
+	overflow: auto;
+}
+#comments .comment-wrap .right cite b {
+	float: left;
+}
+#comments .comment-wrap .right cite b a {
+	color: #333;
+}
+#comments .comment-wrap .right cite small {
+	font-size: 80%;
+	float: right;
+}
+
+#comments .comment-wrap .right p {
+	padding: 6px 0;
+	clear: both;
+}
+
+#comments .comment-wrap .right blockquote,
+#comments .comment-wrap .right code,
+#comments .comment-wrap .right pre {
+	margin: 6px 0;
+	clear: both;
+}
+
+#comments .alt {
+	background-color: #F6F6F6;
+}
+
+#comments .author {
+	background-color: #F6F7D6;
+	border-color: #F1E4BC;
+}
+
+	
+	
+	
+.bubble {
+  position: relative;
+  width: 360px;
+}
+
+.bubble .body {
+  color: #ffffff;
+  background-color: #66aa11;
+}
+
+.bubble .tail {
+  border-top: 18px solid #66aa11;
+  border-right: 24px solid transparent; 
+  position: absolute;
+  bottom: -18px;
+  left: 36px;
+  width: 0; 
+  height: 0; 
+}
+  </style>
+</head>
+<body>
+  <h1>掲示板</h1>
+  
+
+	
+	<div id="comments">
+<% @contributes.each do |@contribute| %>
+		<div class="comment-wrap alt" id="comment-9253">
+			<div class="left">
+				<a href="" title="Visit website" rel="external nofollow">
+				<%= link_to(image_tag("/images/face.jpg", :size=>"50x50", :alt=>"face", :class => "avatar avatar-56"), {:controller => 'contributes', :action => 'test'}) %>
+				<!--
+				<img alt='' src='http://www.willmayo.com/journal/wp-content/themes/Venice/images/gravatar.jpg' class='avatar avatar-56' height='56' width='56' />
+				-->
+				</a>
+			</div>
+			<div class="right">
+				<cite><b><%=h @contribute.name %></b>
+				<small><a href="#comment-9253" title="Permanent link to this comment">May 14th, 2010 at 6:51 pm</a></small>
+				</cite>
+				<br />
+				<% if @contribute.file_name != nil %>
+					<%= image_tag ("/images/upload/" + @contribute.file_name), :alt=>"neko" %>
+				<% else %>
+					画像は登録されていません。
+				<% end %>
+				<!--
+				<p><%=h simple_format(@contribute.body) %></p>
+				-->
+				<%= simple_format(@contribute.body) %>
+			</div>
+		</div>
+<% end %>
+	</div>
+  
+  
+  <hr />
+
+<!--
+  <%= form_tag :action=>"add_cont" %>
+    名前:<%= text_field("new_cont", "name", "size"=>10) %><br />
+    本文:<%= text_field("new_cont", "body", "size"=>60) %><br />
+    <input type="submit" value="Add" />
+  </form>
+-->
+  
+<% form_tag ({:controller => "contributes", :action => "add_cont"}, {:method => "post" , :multipart => true}) do %>
+  <dl>
+    <dt>入力してください。「テキストボックス」</dt>
+    <dd><%= text_field :new_cont, :name, :style => "width:320px;" %></dd>
+    <dt>選択してください「ラジオボタン」</dt>
+    <dd>
+      <label><%= radio_button :new_cont, :public_flg, 0, :checked=>'checked' %>非表示</label>&nbsp;|&nbsp;
+      <label><%= radio_button :new_cont, :public_flg, 1 %>表示</label>
+    </dd>
+    <dt>コメントしてください。「テキストエリア」</dt>
+    <dd><%= text_area :new_cont, :body, :style => "width:320px;height:120px;" %></dd>
+    <dt>ファイルをアップロードしてください「ファイル」</dt>
+	<!--
+    <dd><%= file_field :new_cont, :photo %></dd>
+	-->
+    <dd><input name="attachment" type="file" /></dd>
+  </dl>
+  <%= submit_tag "Comment Post!!" %>
+
+<% end %>
+
+</body>
+</html>
+

@@ -1,0 +1,13 @@
+<p>
+  <b>File name:</b>
+  <%=h @contribute.file_name %>
+</p>
+
+<p>
+  <b>File size:</b>
+  <%=h @contribute.file_size %>
+</p>
+
+
+<%= link_to 'Edit', edit_contribute_path(@contribute) %> |
+<%= link_to 'Back', contributes_path %>

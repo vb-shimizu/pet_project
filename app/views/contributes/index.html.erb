@@ -1,0 +1,22 @@
+<h1>Listing contributes</h1>
+
+<table>
+  <tr>
+    <th>File name</th>
+    <th>File size</th>
+  </tr>
+
+<% for contribute in @contributes %>
+  <tr>
+    <td><%=h contribute.file_name %></td>
+    <td><%=h contribute.file_size %></td>
+    <td><%= link_to 'Show', contribute %></td>
+    <td><%= link_to 'Edit', edit_contribute_path(contribute) %></td>
+    <td><%= link_to 'Destroy', contribute, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New contribute', new_contribute_path %>

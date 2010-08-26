@@ -1,0 +1,33 @@
+<p>
+  <b>Id:</b>
+  <%=h @contribute.id %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%=h @contribute.name %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%=h @contribute.body %>
+</p>
+
+<p>
+  <b>Photo:</b>
+  <%=h @contribute.photo %>
+</p>
+
+<p>
+  <b>Upload date:</b>
+  <%=h @contribute.upload_date %>
+</p>
+
+<p>
+  <b>Public flg:</b>
+  <%=h @contribute.public_flg %>
+</p>
+
+
+<%= link_to 'Edit', edit_contribute_path(@contribute) %> |
+<%= link_to 'Back', contributes_path %>

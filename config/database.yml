@@ -1,0 +1,21 @@
+development:
+  adapter: mysql
+  database: vargo_development
+  username: root
+  password: password
+  socket: /var/run/mysqld/mysqld.sock
+
+test:
+  adapter: mysql
+  database: vargo_test
+  username: root
+  password: password
+  socket: /var/run/mysqld/mysqld.sock
+
+production:
+  adapter: mysql
+  database: vargo_production
+  username: root
+  password: password
+  socket: /var/run/mysqld/mysqld.sock
+
